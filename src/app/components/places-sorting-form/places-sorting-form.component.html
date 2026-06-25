@@ -1,0 +1,28 @@
+<form class="places__sorting" action="#" method="get">
+  <span class="places__sorting-caption">Sort by</span>
+  <span class="places__sorting-type"
+        appToggle
+        appHoverTracker
+        (toggled)="toggleMenu()"
+        (closed)="closeMenu()"
+        tabindex="0">
+                  Popular
+                  <svg class="places__sorting-arrow" width="7" height="4">
+                    <use xlink:href="#icon-arrow-select"></use>
+                  </svg>
+                </span>
+  <ul
+    appHoverTracker
+    (hovered)="onHovered($event)"
+    [ngClass]="{
+  'places__options': true,
+  'places__options--custom': true,
+  'places__options--opened': isOpen()
+  }"
+  >
+    <li class="places__option places__option--active" tabindex="0">Popular</li>
+    <li class="places__option" tabindex="0">Price: low to high</li>
+    <li class="places__option" tabindex="0">Price: high to low</li>
+    <li class="places__option" tabindex="0">Top rated first</li>
+  </ul>
+</form>
