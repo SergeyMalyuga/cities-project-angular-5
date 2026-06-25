@@ -7,7 +7,6 @@ import {HeaderComponent} from '../../shared/components/header/header.component';
     HeaderComponent
   ],
   templateUrl: './favorites.component.html',
-  styleUrl: './favorites.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FavoritesComponent {
