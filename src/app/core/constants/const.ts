@@ -15,6 +15,10 @@ export enum APIRoute {
   OFFERS = 'offers',
 }
 
+export const API_PATHS = {
+  NEARBY: 'nearby',
+} as const;
+
 export enum AuthorizationStatus {
   AUTH = 'authenticated',
   UN_AUTH = 'unauthorized',

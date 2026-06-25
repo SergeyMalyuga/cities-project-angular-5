@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component, inject, OnInit} from '@angular/core';
+import {RouterOutlet} from '@angular/router';
+import {Store} from '@ngrx/store';
+import {AppState} from './core/models/app.state';
+import {loadOffers} from './store/offer/actions/offer.actions';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +10,10 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  title = 'angular-template-project';
+export class AppComponent implements OnInit {
+  private store = inject(Store<AppState>);
+
+  public ngOnInit(): void {
+    this.store.dispatch(loadOffers());
+  }
 }
