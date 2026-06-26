@@ -5,6 +5,7 @@ import * as UserActions from '../actions/user.actions';
 import {catchError, map, of, switchMap, tap} from 'rxjs';
 import {AuthService} from '../../../core/services/auth.service';
 import {HttpErrorResponse} from '@angular/common/http';
+import {loadFavoriteOffers} from '../../favorite-offer/actions/favorite-offer.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,10 @@ export class UserEffects {
               catchError((error: HttpErrorResponse) => of(UserActions.checkAuthFailure({error}))))
         }
         return of(UserActions.checkAuthFailure({error: 'No token'}))
-      } )));
+      })));
+
+  public authSuccess$ = createEffect(() =>
+    this.actions$.pipe(ofType(UserActions.checkAuthSuccess), map(() => loadFavoriteOffers())));
 
   public login$ = createEffect(() =>
     this.actions$.pipe(ofType(UserActions.login),
