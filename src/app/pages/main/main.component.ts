@@ -10,6 +10,8 @@ import {City} from '../../core/models/city';
 import {changeCity} from '../../store/city/actions/city.actions';
 import {PlacesSortingFormComponent} from '../../components/places-sorting-form/places-sorting-form.component';
 import {SortByPipe} from './pipes/sort-by.pipe';
+import {OfferPreview} from '../../core/models/offers';
+import {MapComponent} from '../../shared/components/map/map.component';
 
 @Component({
   selector: 'app-main',
@@ -19,6 +21,7 @@ import {SortByPipe} from './pipes/sort-by.pipe';
     NgClass,
     PlacesSortingFormComponent,
     SortByPipe,
+    MapComponent,
   ],
   templateUrl: './main.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -31,6 +34,7 @@ export class MainComponent {
   public offers = this.store.selectSignal(selectOffersByCity);
   public currentCity = this.store.selectSignal(selectCity);
   public currentSortType = signal<SortType>(SortType.POPULAR);
+  public activeCard = signal<OfferPreview | null>(null);
 
   public changeCity(city: City): void {
     this.store.dispatch(changeCity({city}));
@@ -38,5 +42,9 @@ export class MainComponent {
 
   public changeSortType(sortType: SortType): void {
     this.currentSortType.set(sortType);
+  }
+
+  public changeActiveCard(offer: OfferPreview | null): void {
+    this.activeCard.set(offer);
   }
 }
