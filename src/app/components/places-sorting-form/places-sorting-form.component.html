@@ -20,9 +20,16 @@
   'places__options--opened': isOpen()
   }"
   >
-    <li class="places__option places__option--active" tabindex="0">Popular</li>
-    <li class="places__option" tabindex="0">Price: low to high</li>
-    <li class="places__option" tabindex="0">Price: high to low</li>
-    <li class="places__option" tabindex="0">Top rated first</li>
+    @for (sortType of sortTypes; track sortType) {
+      <li
+        appAccessibilityClick
+        (clicked)="onClicked(sortType)"
+          [ngClass]="{
+          'places__option': true,
+          'places__option--active': sortType === currentSortType
+          }"
+          tabindex="0"
+      >{{sortType}}</li>
+    }
   </ul>
 </form>
