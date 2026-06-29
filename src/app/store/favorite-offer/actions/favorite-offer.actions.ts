@@ -8,7 +8,8 @@ export const loadFavoriteOffersSuccess = createAction('[Favorite Offer Effects] 
 export const loadFavoriteOffersFailure = createAction('[Favorite Offer Effects] Load Favorite Offers Failure',
   props<{ error: HttpErrorResponse }>());
 
-export const toggleFavorite = createAction('[Favorite Offer] Toggle Favorite Offer');
+export const toggleFavorite = createAction('[Favorite Offer] Toggle Favorite Offer',
+  props<{offerId: string, isFavorite: boolean}>());
 export const toggleFavoriteSuccess = createAction('[Favorite Offer Effects] Toggle Favorite Offer Success',
   props<{ offer: Offer }>());
 export const toggleFavoriteFailure = createAction('[Favorite Offer Effects] Toggle Favorite Offer Failure',
