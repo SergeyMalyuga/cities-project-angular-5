@@ -2,7 +2,7 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Offer, OfferPreview} from '../models/offers';
-import {APIRoute, BASE_URL} from '../constants/const';
+import {APIRoute, BASE_URL, FavoriteStatus} from '../constants/const';
 import {defaultHttpOperators} from '../utils/rjxs-operators';
 
 @Injectable({
@@ -15,7 +15,8 @@ export class FavoriteOfferService {
     return this.http.get<OfferPreview[]>(`${BASE_URL}/${APIRoute.FAVORITE}`).pipe(...defaultHttpOperators<OfferPreview[]>());
   }
 
-  public toggleFavorite(offerId: string): Observable<Offer> {
-    return this.http.get<Offer>(`${BASE_URL}/${APIRoute.FAVORITE}/${offerId}`).pipe(...defaultHttpOperators<Offer>());
+  public toggleFavorite(offerId: string, isFavorite: boolean): Observable<Offer> {
+    const status = isFavorite ? FavoriteStatus.ADDED : FavoriteStatus.REMOVED;
+    return this.http.post<Offer>(`${BASE_URL}/${APIRoute.FAVORITE}/${offerId}/${status}`, {}).pipe(...defaultHttpOperators<Offer>());
   }
 }
