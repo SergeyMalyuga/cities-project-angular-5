@@ -17,4 +17,11 @@ export class FavoriteOfferEffects {
       switchMap(() => this.favoriteOfferService.getOffers()
         .pipe(map(offers => FavoriteOfferActions.loadFavoriteOffersSuccess({offers})),
           catchError((error: HttpErrorResponse) => of(FavoriteOfferActions.loadFavoriteOffersFailure({error})))))));
+
+  public toggleFavorite$ = createEffect(() =>
+    this.actions$.pipe(ofType(FavoriteOfferActions.toggleFavorite),
+      switchMap(({offerId, isFavorite}) =>
+        this.favoriteOfferService.toggleFavorite(offerId, isFavorite)
+          .pipe(map(offer => FavoriteOfferActions.toggleFavoriteSuccess({offer})),
+            catchError((error: HttpErrorResponse) => of(FavoriteOfferActions.toggleFavoriteFailure({error})))))));
 }
