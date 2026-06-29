@@ -20,7 +20,7 @@ export class UserService {
     return this.http.post<User>(`${BASE_URL}/${APIRoute.LOGIN}`, credentials).pipe(...defaultHttpOperators<User>());
   }
 
-  private logout(): Observable<void> {
+  public logout(): Observable<void> {
     return this.http.delete<void>(`${BASE_URL}/${APIRoute.LOGOUT}`).pipe(...defaultHttpOperators<void>());
   }
 }
