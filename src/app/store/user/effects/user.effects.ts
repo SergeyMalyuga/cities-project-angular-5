@@ -21,8 +21,7 @@ export class UserEffects {
         const token = this.authService.getToken();
         if (token) {
           return this.userService.checkAuth()
-            .pipe(tap(user => this.authService.setToken(user.token)),
-              map(user => UserActions.checkAuthSuccess({user})),
+            .pipe(map(user => UserActions.checkAuthSuccess({user})),
               catchError((error: HttpErrorResponse) => of(UserActions.checkAuthFailure({error}))))
         }
         return of(UserActions.checkAuthFailure({error: 'No token'}))
@@ -34,7 +33,7 @@ export class UserEffects {
   public login$ = createEffect(() =>
     this.actions$.pipe(ofType(UserActions.login),
       switchMap(({credentials}) => this.userService.login(credentials)
-        .pipe(map(user => UserActions.loginSuccess({user})),
+        .pipe(tap(user => this.authService.setToken(user.token)), map(user => UserActions.loginSuccess({user})),
           catchError((error: HttpErrorResponse) => of(UserActions.loginFailure({error})))))));
 
   public logout$ = createEffect(() =>
