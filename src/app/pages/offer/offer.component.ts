@@ -4,7 +4,21 @@ import {Store} from '@ngrx/store';
 import {AppState} from '../../core/models/app.state';
 import {Offer, OfferPreview} from '../../core/models/offers';
 import {Comment} from '../../core/models/comments';
-import {catchError, combineLatest, EMPTY, finalize, first, map, merge, of, pipe, Subject, switchMap, tap} from 'rxjs';
+import {
+  catchError,
+  combineLatest,
+  EMPTY,
+  filter,
+  finalize,
+  first,
+  map,
+  merge,
+  of,
+  pipe,
+  Subject,
+  switchMap,
+  tap
+} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {OfferDataService} from '../../core/services/offer-data.service';
 import {AppRoute, AuthorizationStatus, QUANTITY_FIRST_OFFERS} from '../../core/constants/const';
@@ -14,6 +28,8 @@ import {OfferService} from '../../core/services/offer.service';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {CommentService} from '../../core/services/comment.service';
 import {MapComponent} from '../../shared/components/map/map.component';
+import {OfferCardComponent} from '../../shared/components/offer-card/offer-card.component';
+import {ScrollUpDirective} from '../../shared/directives/scroll-up.directive';
 
 @Component({
   selector: 'app-offer',
@@ -22,7 +38,9 @@ import {MapComponent} from '../../shared/components/map/map.component';
     NgClass,
     TitleCasePipe,
     MapComponent,
-    SlicePipe
+    SlicePipe,
+    OfferCardComponent,
+    ScrollUpDirective
   ],
   templateUrl: './offer.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -45,6 +63,7 @@ export class OfferComponent implements OnInit {
 
   public nearbyOffers = signal<OfferPreview[]>([]);
   public refreshNearbyOffers$ = new Subject<void>();
+  public isNearbyOffersLoading = signal<boolean>(false);
 
   public isLoading = signal<boolean>(false);
 
@@ -52,7 +71,7 @@ export class OfferComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.pipe(map(params => params.get('id')),
-      first((id): id is string => id !== null),
+      filter((id): id is string => id !== null),
       switchMap(id => {
         const offer$ = merge(
           this.offerDataService.getOfferById(id),
@@ -67,7 +86,7 @@ export class OfferComponent implements OnInit {
         const nearbyOffers$ = merge(
           this.offerDataService.getNearbyOffers(id),
           this.refreshNearbyOffers$.pipe(switchMap(() => this.offerDataService.getNearbyOffers(id)
-            .pipe(catchError(() => of([]))))));
+            .pipe(catchError(() => of([])), finalize(() => this.isNearbyOffersLoading.set(false))))));
 
         const comments$ = merge(
           this.commentService.getComments(id),
@@ -91,7 +110,7 @@ export class OfferComponent implements OnInit {
     if (offer) {
       this.isLoading.set(true);
       this.offerService.toggleFavorite(offer.id, offer.isFavorite)
-        .pipe(first(success => success !== null),
+        .pipe(filter(success => success !== null),
           tap(success => {
             if (success) {
               this.refreshOffer$.next();
@@ -106,6 +125,7 @@ export class OfferComponent implements OnInit {
   }
 
   public refreshNearbyOffers() {
+    this.isNearbyOffersLoading.set(true);
     this.refreshNearbyOffers$.next();
   }
 
