@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output, signal} from '@angular/core';
 import {OfferPreview} from '../../../core/models/offers';
 import {NgClass, TitleCasePipe} from '@angular/common';
 import {HoverTrackerDirective} from '../../directives/hover-tracker.directive';
@@ -19,6 +19,7 @@ import {selectIsFavoriteOffersLoading} from '../../../store/favorite-offer/selec
 })
 export class OfferCardComponent {
   @Input({required: true}) offer!: OfferPreview;
+  @Input() isFavoritesPage = false;
   @Output() hovered = new EventEmitter<OfferPreview | null>();
 
   private offerService = inject(OfferService);

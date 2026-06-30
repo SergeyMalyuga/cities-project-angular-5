@@ -1,15 +1,35 @@
-<article appHoverTracker (hovered)="onHovered($event)" class="cities__card place-card">
+<article appHoverTracker (hovered)="onHovered($event)"
+[ngClass]="{
+'cities__card': !isFavoritesPage,
+'favorites__card': isFavoritesPage,
+'place-card': true
+}"
+>
   @if (offer.isPremium) {
     <div class="place-card__mark">
       <span>Premium</span>
     </div>
   }
-  <div class="cities__image-wrapper place-card__image-wrapper">
+  <div
+  [ngClass]="{
+  'cities__image-wrapper': !isFavoritesPage,
+  'favorites__image-wrapper': isFavoritesPage,
+  'place-card__image-wrapper': true
+  }"
+  >
     <a href="#">
-      <img class="place-card__image" src="{{offer.previewImage}}" width="260" height="200" alt="Place image">
+      <img class="place-card__image" src="{{offer.previewImage}}"
+           [width]="isFavoritesPage ? '150' : '260'"
+           [height]="isFavoritesPage ? '110' : '200'"
+           alt="Place image">
     </a>
   </div>
-  <div class="place-card__info">
+  <div
+  [ngClass]="{
+  'favorites__card-info': isFavoritesPage,
+  'place-card__info': true
+  }"
+  >
     <div class="place-card__price-wrapper">
       <div class="place-card__price">
         <b class="place-card__price-value">&euro;{{ offer.price }}</b>
