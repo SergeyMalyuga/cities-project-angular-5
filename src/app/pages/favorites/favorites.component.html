@@ -18,7 +18,7 @@
                   </div>
                   <div class="favorites__places">
                     @for (offer of offers()[city]; track offer.id) {
-                      <app-offer-card [offer]="offer"/>
+                      <app-offer-card class="favorites__card" [offer]="offer" [isFavoritesPage]="true"/>
                     }
               </div>
               </li>
