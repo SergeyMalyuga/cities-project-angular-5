@@ -17,7 +17,7 @@
   'place-card__image-wrapper': true
   }"
   >
-    <a href="#">
+    <a [routerLink]="[AppRoute.OFFER, offer.id]">
       <img class="place-card__image" src="{{offer.previewImage}}"
            [width]="isFavoritesPage ? '150' : '260'"
            [height]="isFavoritesPage ? '110' : '200'"
@@ -57,7 +57,7 @@
       </div>
     </div>
     <h2 class="place-card__name">
-      <a href="#">{{ offer.title }}</a>
+      <a [routerLink]="[AppRoute.OFFER, offer.id]">{{ offer.title }}</a>
     </h2>
     <p class="place-card__type">{{ offer.type | titlecase }}</p>
   </div>
