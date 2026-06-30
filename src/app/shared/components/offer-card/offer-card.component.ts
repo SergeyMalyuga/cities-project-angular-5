@@ -1,13 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DestroyRef,
-  EventEmitter,
-  inject,
-  Input,
-  Output,
-  signal
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, DestroyRef, EventEmitter, inject, Input, Output} from '@angular/core';
 import {OfferPreview} from '../../../core/models/offers';
 import {NgClass, TitleCasePipe} from '@angular/common';
 import {HoverTrackerDirective} from '../../directives/hover-tracker.directive';
@@ -34,6 +25,7 @@ import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 export class OfferCardComponent {
   @Input({required: true}) offer!: OfferPreview;
   @Input() isFavoritesPage = false;
+  @Input() isDisabled: boolean | null = null;
   @Output() hovered = new EventEmitter<OfferPreview | null>();
   @Output() toggled = new EventEmitter<void>();
 
@@ -44,6 +36,7 @@ export class OfferCardComponent {
   public isLoading = this.store.selectSignal(selectIsFavoriteOffersLoading);
 
   protected readonly Math = Math;
+  protected readonly AppRoute = AppRoute;
 
   public onHovered(isHover: boolean) {
     if (isHover) {
@@ -61,6 +54,4 @@ export class OfferCardComponent {
         }
       }), takeUntilDestroyed(this.destroyRef)).subscribe();
   }
-
-  protected readonly AppRoute = AppRoute;
 }
