@@ -169,7 +169,9 @@
           </section>
         </div>
       </div>
-      <section class="offer__map map"></section>
+      <section class="offer__map map">
+        <app-map [offers]="nearbyOffers() | slice: 0: QUANTITY_FIRST_OFFERS" [activeCard]="null"/>
+      </section>
     </section>
     <div class="container">
       <section class="near-places places">

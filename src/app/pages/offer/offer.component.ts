@@ -7,19 +7,22 @@ import {Comment} from '../../core/models/comments';
 import {catchError, combineLatest, EMPTY, finalize, first, map, merge, of, pipe, Subject, switchMap, tap} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {OfferDataService} from '../../core/services/offer-data.service';
-import {AppRoute, AuthorizationStatus} from '../../core/constants/const';
+import {AppRoute, AuthorizationStatus, QUANTITY_FIRST_OFFERS} from '../../core/constants/const';
 import {selectAuthStatus} from '../../store/user/selectors/user.selectors';
-import {NgClass, TitleCasePipe} from '@angular/common';
+import {NgClass, SlicePipe, TitleCasePipe} from '@angular/common';
 import {OfferService} from '../../core/services/offer.service';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {CommentService} from '../../core/services/comment.service';
+import {MapComponent} from '../../shared/components/map/map.component';
 
 @Component({
   selector: 'app-offer',
   imports: [
     HeaderComponent,
     NgClass,
-    TitleCasePipe
+    TitleCasePipe,
+    MapComponent,
+    SlicePipe
   ],
   templateUrl: './offer.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -113,4 +116,6 @@ export class OfferComponent implements OnInit {
     }
     return 0;
   }
+
+  protected readonly QUANTITY_FIRST_OFFERS = QUANTITY_FIRST_OFFERS;
 }
