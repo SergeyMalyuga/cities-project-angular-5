@@ -4,32 +4,20 @@ import {Store} from '@ngrx/store';
 import {AppState} from '../../core/models/app.state';
 import {Offer, OfferPreview} from '../../core/models/offers';
 import {Comment} from '../../core/models/comments';
-import {
-  catchError,
-  combineLatest,
-  EMPTY,
-  filter,
-  finalize,
-  first,
-  map,
-  merge,
-  of,
-  pipe,
-  Subject,
-  switchMap,
-  tap
-} from 'rxjs';
+import {catchError, combineLatest, EMPTY, filter, finalize, map, merge, of, pipe, Subject, switchMap, tap} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {OfferDataService} from '../../core/services/offer-data.service';
 import {AppRoute, AuthorizationStatus, QUANTITY_FIRST_OFFERS} from '../../core/constants/const';
 import {selectAuthStatus} from '../../store/user/selectors/user.selectors';
-import {NgClass, SlicePipe, TitleCasePipe} from '@angular/common';
+import {DatePipe, NgClass, SlicePipe, TitleCasePipe} from '@angular/common';
 import {OfferService} from '../../core/services/offer.service';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {CommentService} from '../../core/services/comment.service';
 import {MapComponent} from '../../shared/components/map/map.component';
 import {OfferCardComponent} from '../../shared/components/offer-card/offer-card.component';
 import {ScrollUpDirective} from '../../shared/directives/scroll-up.directive';
+import {CommentFormComponent} from '../../components/comment-form/comment-form.component';
+import {SortByDatePipe} from '../../shared/pipes/sort-by-date.pipe';
 
 @Component({
   selector: 'app-offer',
@@ -40,7 +28,10 @@ import {ScrollUpDirective} from '../../shared/directives/scroll-up.directive';
     MapComponent,
     SlicePipe,
     OfferCardComponent,
-    ScrollUpDirective
+    ScrollUpDirective,
+    CommentFormComponent,
+    DatePipe,
+    SortByDatePipe
   ],
   templateUrl: './offer.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -54,9 +45,11 @@ export class OfferComponent implements OnInit {
   private router = inject(Router);
   private destroyRef = inject(DestroyRef);
 
+  protected readonly QUANTITY_FIRST_OFFERS = QUANTITY_FIRST_OFFERS;
+
   public offer = signal<Offer | null>(null);
   public refreshOffer$ = new Subject<void>();
-  public offerId = computed(() => this.offer()?.id);
+  public offerId = computed(() => this.offer()?.id ?? null);
 
   public comments = signal<Comment[]>([]);
   public refreshComments$ = new Subject<void>();
@@ -129,13 +122,15 @@ export class OfferComponent implements OnInit {
     this.refreshNearbyOffers$.next();
   }
 
-  public get rating() {
-    const offer = this.offer();
-    if (offer) {
-      return Math.floor(offer.rating * 20);
-    }
-    return 0;
+  public refreshComments() {
+    this.refreshComments$.next();
   }
 
-  protected readonly QUANTITY_FIRST_OFFERS = QUANTITY_FIRST_OFFERS;
+  public rating = computed(() => {
+    const offer = this.offer();
+    return offer ? Math.floor(offer.rating * 20) : 0;
+  });
+  public getCommentRating(comment: Comment) {
+      return comment ? Math.floor(comment.rating * 20) : 0;
+  }
 }
