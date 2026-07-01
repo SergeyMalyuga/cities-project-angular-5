@@ -18,6 +18,7 @@ import {OfferCardComponent} from '../../shared/components/offer-card/offer-card.
 import {ScrollUpDirective} from '../../shared/directives/scroll-up.directive';
 import {CommentFormComponent} from '../../components/comment-form/comment-form.component';
 import {SortByDatePipe} from '../../shared/pipes/sort-by-date.pipe';
+import {LoaderComponent} from '../../shared/components/loader/loader.component';
 
 @Component({
   selector: 'app-offer',
@@ -31,7 +32,8 @@ import {SortByDatePipe} from '../../shared/pipes/sort-by-date.pipe';
     ScrollUpDirective,
     CommentFormComponent,
     DatePipe,
-    SortByDatePipe
+    SortByDatePipe,
+    LoaderComponent
   ],
   templateUrl: './offer.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
