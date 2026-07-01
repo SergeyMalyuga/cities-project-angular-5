@@ -1,22 +1,25 @@
-import {ChangeDetectionStrategy, Component, inject, OnInit, signal} from '@angular/core';
-import {HeaderComponent} from '../../shared/components/header/header.component';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../core/models/app.state';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
+import { HeaderComponent } from '../../shared/components/header/header.component';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../core/models/app.state';
 import {
   selectFavoriteOffers,
-  selectFavoriteOffersTotal
+  selectFavoriteOffersTotal,
 } from '../../store/favorite-offer/selectors/favorite-offer.selectors';
-import {SortedFavoriteOffers} from '../../core/models/sorted-favorite-offers';
-import {OfferCardComponent} from '../../shared/components/offer-card/offer-card.component';
+import { SortedFavoriteOffers } from '../../core/models/sorted-favorite-offers';
+import { OfferCardComponent } from '../../shared/components/offer-card/offer-card.component';
 
 @Component({
   selector: 'app-favorites',
-  imports: [
-    HeaderComponent,
-    OfferCardComponent
-  ],
+  imports: [HeaderComponent, OfferCardComponent],
   templateUrl: './favorites.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FavoritesComponent implements OnInit {
   private store = inject(Store<AppState>);
@@ -25,9 +28,9 @@ export class FavoritesComponent implements OnInit {
   public offersTotal = this.store.selectSignal(selectFavoriteOffersTotal);
 
   public ngOnInit(): void {
-    this.store.select(selectFavoriteOffers).subscribe(offers => {
+    this.store.select(selectFavoriteOffers).subscribe((offers) => {
       const sortedOffers = this.getSortedOffers();
-      offers.forEach(offer => {
+      offers.forEach((offer) => {
         const key = offer.city.name.toLowerCase();
         if (this.isKetOfSortedOffers(key)) {
           sortedOffers[key].push(offer);
@@ -44,8 +47,8 @@ export class FavoritesComponent implements OnInit {
       brussels: [],
       amsterdam: [],
       hamburg: [],
-      dusseldorf: []
-    }
+      dusseldorf: [],
+    };
   }
 
   public cities = Object.keys(this.offers());

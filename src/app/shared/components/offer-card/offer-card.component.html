@@ -1,9 +1,11 @@
-<article appHoverTracker (hovered)="onHovered($event)"
-[ngClass]="{
-'cities__card': !isFavoritesPage,
-'favorites__card': isFavoritesPage,
-'place-card': true
-}"
+<article
+  appHoverTracker
+  (hovered)="onHovered($event)"
+  [ngClass]="{
+    cities__card: !isFavoritesPage,
+    favorites__card: isFavoritesPage,
+    'place-card': true,
+  }"
 >
   @if (offer.isPremium) {
     <div class="place-card__mark">
@@ -11,24 +13,27 @@
     </div>
   }
   <div
-  [ngClass]="{
-  'cities__image-wrapper': !isFavoritesPage,
-  'favorites__image-wrapper': isFavoritesPage,
-  'place-card__image-wrapper': true
-  }"
+    [ngClass]="{
+      'cities__image-wrapper': !isFavoritesPage,
+      'favorites__image-wrapper': isFavoritesPage,
+      'place-card__image-wrapper': true,
+    }"
   >
     <a [routerLink]="['/', AppRoute.OFFER, offer.id]">
-      <img class="place-card__image" src="{{offer.previewImage}}"
-           [width]="isFavoritesPage ? '150' : '260'"
-           [height]="isFavoritesPage ? '110' : '200'"
-           alt="Place image">
+      <img
+        class="place-card__image"
+        src="{{ offer.previewImage }}"
+        [width]="isFavoritesPage ? '150' : '260'"
+        [height]="isFavoritesPage ? '110' : '200'"
+        alt="Place image"
+      />
     </a>
   </div>
   <div
-  [ngClass]="{
-  'favorites__card-info': isFavoritesPage,
-  'place-card__info': true
-  }"
+    [ngClass]="{
+      'favorites__card-info': isFavoritesPage,
+      'place-card__info': true,
+    }"
   >
     <div class="place-card__price-wrapper">
       <div class="place-card__price">
@@ -38,12 +43,13 @@
       <button
         (click)="toggleFavorite()"
         [ngClass]="{
-              'place-card__bookmark-button': true,
-              'button': true,
-              'place-card__bookmark-button--active': offer.isFavorite
-              }"
+          'place-card__bookmark-button': true,
+          button: true,
+          'place-card__bookmark-button--active': offer.isFavorite,
+        }"
         type="button"
-      [disabled]="isDisabled ?? isLoading()">
+        [disabled]="isDisabled ?? isLoading()"
+      >
         <svg class="place-card__bookmark-icon" width="18" height="19">
           <use xlink:href="#icon-bookmark"></use>
         </svg>

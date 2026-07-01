@@ -8,9 +8,8 @@ describe('PlacesSortingFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PlacesSortingFormComponent]
-    })
-    .compileComponents();
+      imports: [PlacesSortingFormComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PlacesSortingFormComponent);
     component = fixture.componentInstance;

@@ -1,6 +1,6 @@
-import {UserState} from '../../core/models/user.state';
-import {AuthorizationStatus, DEFAULT_USER} from '../../core/constants/const';
-import {createReducer, on} from '@ngrx/store';
+import { UserState } from '../../core/models/user.state';
+import { AuthorizationStatus, DEFAULT_USER } from '../../core/constants/const';
+import { createReducer, on } from '@ngrx/store';
 import {
   checkAuth,
   checkAuthFailure,
@@ -8,43 +8,68 @@ import {
   login,
   loginFailure,
   loginSuccess,
-  logout, logoutFailure, logoutSuccess
+  logout,
+  logoutFailure,
+  logoutSuccess,
 } from './actions/user.actions';
 
 const initialState: UserState = {
   user: DEFAULT_USER,
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   isLoading: false,
-  error: null
-}
+  error: null,
+};
 
 export const userReducer = createReducer(
   initialState,
-  on(checkAuth, state => ({
-    ...state, isLoading: true
+  on(checkAuth, (state) => ({
+    ...state,
+    isLoading: true,
   })),
-  on(checkAuthSuccess, (state, {user}) => ({
-    ...state, user, authorizationStatus: AuthorizationStatus.AUTH, isLoading: false, error: null
+  on(checkAuthSuccess, (state, { user }) => ({
+    ...state,
+    user,
+    authorizationStatus: AuthorizationStatus.AUTH,
+    isLoading: false,
+    error: null,
   })),
-  on(checkAuthFailure, (state, {error}) => ({
-    ...state, authorizationStatus: AuthorizationStatus.UN_AUTH, isLoading: false, error
+  on(checkAuthFailure, (state, { error }) => ({
+    ...state,
+    authorizationStatus: AuthorizationStatus.UN_AUTH,
+    isLoading: false,
+    error,
   })),
-  on(login, state => ({
-    ...state, isLoading: true
+  on(login, (state) => ({
+    ...state,
+    isLoading: true,
   })),
-  on(loginSuccess, (state, {user}) => ({
-    ...state, user, authorizationStatus: AuthorizationStatus.AUTH, isLoading: false, error: null
+  on(loginSuccess, (state, { user }) => ({
+    ...state,
+    user,
+    authorizationStatus: AuthorizationStatus.AUTH,
+    isLoading: false,
+    error: null,
   })),
-  on(loginFailure, (state, {error}) => ({
-    ...state, isLoading: false, authorizationStatus: AuthorizationStatus.UN_AUTH, error
+  on(loginFailure, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    authorizationStatus: AuthorizationStatus.UN_AUTH,
+    error,
   })),
-  on(logout, state => ({
-    ...state, isLoading: true
+  on(logout, (state) => ({
+    ...state,
+    isLoading: true,
   })),
-  on(logoutSuccess, state => ({
-    ...state, user: DEFAULT_USER, isLoading: false, authorizationStatus: AuthorizationStatus.UN_AUTH, error: null
+  on(logoutSuccess, (state) => ({
+    ...state,
+    user: DEFAULT_USER,
+    isLoading: false,
+    authorizationStatus: AuthorizationStatus.UN_AUTH,
+    error: null,
   })),
-  on(logoutFailure, (state, {error}) => ({
-    ...state, isLoading: false, error
-  }))
-)
+  on(logoutFailure, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    error,
+  })),
+);

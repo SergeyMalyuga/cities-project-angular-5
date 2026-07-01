@@ -1,8 +1,8 @@
-import {Directive, HostListener, inject, Input} from '@angular/core';
-import {DOCUMENT} from '@angular/common';
+import { Directive, HostListener, inject, Input } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 @Directive({
-  selector: '[appScrollUp]'
+  selector: '[appScrollUp]',
 })
 export class ScrollUpDirective {
   @Input() enable = false;
@@ -13,15 +13,19 @@ export class ScrollUpDirective {
   @HostListener('click')
   onClick() {
     if (this.enable && this.windowRef) {
-      this.windowRef.scrollTo({top: 0, behavior: 'smooth'});
+      this.windowRef.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 
   @HostListener('keydown', ['$event'])
   onKeyDown(evt: KeyboardEvent) {
-    if (this.enable && this.windowRef && (evt.key === 'Enter' || evt.key === ' ')) {
+    if (
+      this.enable &&
+      this.windowRef &&
+      (evt.key === 'Enter' || evt.key === ' ')
+    ) {
       evt.preventDefault();
-      this.windowRef.scrollTo({top: 0, behavior: 'smooth'});
+      this.windowRef.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 }

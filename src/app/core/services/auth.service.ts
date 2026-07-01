@@ -1,12 +1,11 @@
-import {Injectable} from '@angular/core';
-import {Token} from '../models/token';
-import {AUTH_TOKEN_KEY_NAME} from '../constants/const';
+import { Injectable } from '@angular/core';
+import { Token } from '../models/token';
+import { AUTH_TOKEN_KEY_NAME } from '../constants/const';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-
   public setToken(token: Token): boolean {
     if (!token || token.trim() === '') return false;
     try {

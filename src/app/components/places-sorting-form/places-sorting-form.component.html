@@ -1,35 +1,39 @@
 <form class="places__sorting" action="#" method="get">
   <span class="places__sorting-caption">Sort by</span>
-  <span class="places__sorting-type"
-        appToggle
-        appHoverTracker
-        (toggled)="toggleMenu()"
-        (closed)="closeMenu()"
-        tabindex="0">
-                  Popular
-                  <svg class="places__sorting-arrow" width="7" height="4">
-                    <use xlink:href="#icon-arrow-select"></use>
-                  </svg>
-                </span>
+  <span
+    class="places__sorting-type"
+    appToggle
+    appHoverTracker
+    (toggled)="toggleMenu()"
+    (closed)="closeMenu()"
+    tabindex="0"
+  >
+    Popular
+    <svg class="places__sorting-arrow" width="7" height="4">
+      <use xlink:href="#icon-arrow-select"></use>
+    </svg>
+  </span>
   <ul
     appHoverTracker
     (hovered)="onHovered($event)"
     [ngClass]="{
-  'places__options': true,
-  'places__options--custom': true,
-  'places__options--opened': isOpen()
-  }"
+      places__options: true,
+      'places__options--custom': true,
+      'places__options--opened': isOpen(),
+    }"
   >
     @for (sortType of sortTypes; track sortType) {
       <li
         appAccessibilityClick
         (clicked)="onClicked(sortType)"
-          [ngClass]="{
-          'places__option': true,
-          'places__option--active': sortType === currentSortType
-          }"
-          tabindex="0"
-      >{{sortType}}</li>
+        [ngClass]="{
+          places__option: true,
+          'places__option--active': sortType === currentSortType,
+        }"
+        tabindex="0"
+      >
+        {{ sortType }}
+      </li>
     }
   </ul>
 </form>

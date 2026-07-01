@@ -1,5 +1,5 @@
 <div class="page">
-  <app-header/>
+  <app-header />
   <main class="page__main page__main--favorites">
     <div class="page__favorites-container container">
       <section class="favorites">
@@ -9,19 +9,25 @@
             @for (city of cities; track city) {
               @if (isKetOfSortedOffers(city) && offers()[city].length > 0) {
                 <li class="favorites__locations-items">
-                  <div class="favorites__locations locations locations--current">
+                  <div
+                    class="favorites__locations locations locations--current"
+                  >
                     <div class="locations__item">
                       <a class="locations__item-link" href="#">
-                        <span>{{city}}</span>
+                        <span>{{ city }}</span>
                       </a>
                     </div>
                   </div>
                   <div class="favorites__places">
                     @for (offer of offers()[city]; track offer.id) {
-                      <app-offer-card class="favorites__card" [offer]="offer" [isFavoritesPage]="true"/>
+                      <app-offer-card
+                        class="favorites__card"
+                        [offer]="offer"
+                        [isFavoritesPage]="true"
+                      />
                     }
-              </div>
-              </li>
+                  </div>
+                </li>
               }
             }
           </ul>
@@ -29,7 +35,9 @@
           <h1 class="visually-hidden">Favorites (empty)</h1>
           <div class="favorites__status-wrapper">
             <b class="favorites__status">Nothing yet saved.</b>
-            <p class="favorites__status-description">Save properties to narrow down search or plan your future trips.</p>
+            <p class="favorites__status-description">
+              Save properties to narrow down search or plan your future trips.
+            </p>
           </div>
         }
       </section>
@@ -37,7 +45,13 @@
   </main>
   <footer class="footer container">
     <a class="footer__logo-link" href="main.html">
-      <img class="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33">
+      <img
+        class="footer__logo"
+        src="img/logo.svg"
+        alt="6 cities logo"
+        width="64"
+        height="33"
+      />
     </a>
   </footer>
 </div>

@@ -1,8 +1,8 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {HasDate} from '../../core/models/has-date.model';
+import { Pipe, PipeTransform } from '@angular/core';
+import { HasDate } from '../../core/models/has-date.model';
 
 @Pipe({
-  name: 'sortByDate'
+  name: 'sortByDate',
 })
 export class SortByDatePipe implements PipeTransform {
   transform<T extends HasDate>(values: T[]): T[] {
