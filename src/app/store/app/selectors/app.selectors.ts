@@ -19,3 +19,8 @@ export const selectCity = createSelector(
   selectCityState,
   state => state
 )
+
+export const selectIsOffersLoading = createSelector(
+  selectOfferState,
+  state => state.isLoading,
+)
