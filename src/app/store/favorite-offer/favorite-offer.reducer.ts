@@ -1,7 +1,7 @@
-import { createEntityAdapter } from '@ngrx/entity';
-import { OfferPreview } from '../../core/models/offers';
-import { FavoriteOfferState } from '../../core/models/favorite-offer.state';
-import { createReducer, on } from '@ngrx/store';
+import {createEntityAdapter} from '@ngrx/entity';
+import {OfferPreview} from '../../core/models/offers';
+import {FavoriteOfferState} from '../../core/models/favorite-offer.state';
+import {createReducer, on} from '@ngrx/store';
 import {
   loadFavoriteOffers,
   loadFavoriteOffersFailure,

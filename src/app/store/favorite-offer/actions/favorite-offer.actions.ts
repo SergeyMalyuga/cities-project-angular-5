@@ -1,6 +1,6 @@
-import { createAction, props } from '@ngrx/store';
-import { Offer, OfferPreview } from '../../../core/models/offers';
-import { HttpErrorResponse } from '@angular/common/http';
+import {createAction, props} from '@ngrx/store';
+import {Offer, OfferPreview} from '../../../core/models/offers';
+import {HttpErrorResponse} from '@angular/common/http';
 
 export const loadFavoriteOffers = createAction(
   '[Favorite Offer] Load Favorite Offers',

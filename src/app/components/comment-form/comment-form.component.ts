@@ -1,18 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  inject,
-  Input,
-  Output,
-} from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { CommentService } from '../../core/services/comment.service';
+import {ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output,} from '@angular/core';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators,} from '@angular/forms';
+import {CommentService} from '../../core/services/comment.service';
 
 @Component({
   selector: 'app-comment-form',

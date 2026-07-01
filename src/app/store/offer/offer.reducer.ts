@@ -1,13 +1,9 @@
-import { createEntityAdapter } from '@ngrx/entity';
-import { OfferPreview } from '../../core/models/offers';
-import { OfferState } from '../../core/models/offer-state';
-import { createReducer, on } from '@ngrx/store';
-import {
-  loadOffers,
-  loadOffersFailure,
-  loadOffersSuccess,
-} from './actions/offer.actions';
-import { toggleFavoriteSuccess } from '../favorite-offer/actions/favorite-offer.actions';
+import {createEntityAdapter} from '@ngrx/entity';
+import {OfferPreview} from '../../core/models/offers';
+import {OfferState} from '../../core/models/offer-state';
+import {createReducer, on} from '@ngrx/store';
+import {loadOffers, loadOffersFailure, loadOffersSuccess,} from './actions/offer.actions';
+import {toggleFavoriteSuccess} from '../favorite-offer/actions/favorite-offer.actions';
 
 export const offerAdapter = createEntityAdapter<OfferPreview>();
 const initialState: OfferState = offerAdapter.getInitialState({

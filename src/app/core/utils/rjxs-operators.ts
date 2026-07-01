@@ -1,14 +1,7 @@
-import {
-  catchError,
-  MonoTypeOperatorFunction,
-  retry,
-  throwError,
-  timeout,
-  timer,
-} from 'rxjs';
-import { RETRY_ATTEMPTS, TIMEOUT_MS } from '../constants/const';
-import { httpErrorHandler } from './http-error-hadler';
-import { HttpErrorResponse } from '@angular/common/http';
+import {catchError, MonoTypeOperatorFunction, retry, throwError, timeout, timer,} from 'rxjs';
+import {RETRY_ATTEMPTS, TIMEOUT_MS} from '../constants/const';
+import {httpErrorHandler} from './http-error-hadler';
+import {HttpErrorResponse} from '@angular/common/http';
 
 export function defaultHttpOperators<T>(): [
   MonoTypeOperatorFunction<T>,

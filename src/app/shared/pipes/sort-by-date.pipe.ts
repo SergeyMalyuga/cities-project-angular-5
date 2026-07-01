@@ -1,5 +1,5 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { HasDate } from '../../core/models/has-date.model';
+import {Pipe, PipeTransform} from '@angular/core';
+import {HasDate} from '../../core/models/has-date.model';
 
 @Pipe({
   name: 'sortByDate',

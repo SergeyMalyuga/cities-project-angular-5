@@ -10,10 +10,10 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import * as L from 'leaflet';
-import { OfferPreview } from '../../../core/models/offers';
-import { Store } from '@ngrx/store';
-import { AppState } from '../../../core/models/app.state';
-import { selectCity } from '../../../store/app/selectors/app.selectors';
+import {OfferPreview} from '../../../core/models/offers';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../../core/models/app.state';
+import {selectCity} from '../../../store/app/selectors/app.selectors';
 
 @Component({
   selector: 'app-map',

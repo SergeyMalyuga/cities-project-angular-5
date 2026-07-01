@@ -1,9 +1,9 @@
-import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Comment } from '../models/comments';
-import { Observable } from 'rxjs';
-import { APIRoute, BASE_URL } from '../constants/const';
-import { defaultHttpOperators } from '../utils/rjxs-operators';
+import {inject, Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Comment} from '../models/comments';
+import {Observable} from 'rxjs';
+import {APIRoute, BASE_URL} from '../constants/const';
+import {defaultHttpOperators} from '../utils/rjxs-operators';
 
 @Injectable({
   providedIn: 'root',

@@ -1,49 +1,24 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  DestroyRef,
-  inject,
-  OnInit,
-  signal,
-} from '@angular/core';
-import { HeaderComponent } from '../../shared/components/header/header.component';
-import { Store } from '@ngrx/store';
-import { AppState } from '../../core/models/app.state';
-import { Offer, OfferPreview } from '../../core/models/offers';
-import { Comment } from '../../core/models/comments';
-import {
-  catchError,
-  combineLatest,
-  EMPTY,
-  filter,
-  finalize,
-  map,
-  merge,
-  of,
-  pipe,
-  Subject,
-  switchMap,
-  tap,
-} from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
-import { OfferDataService } from '../../core/services/offer-data.service';
-import {
-  AppRoute,
-  AuthorizationStatus,
-  QUANTITY_FIRST_OFFERS,
-} from '../../core/constants/const';
-import { selectAuthStatus } from '../../store/user/selectors/user.selectors';
-import { DatePipe, NgClass, SlicePipe, TitleCasePipe } from '@angular/common';
-import { OfferService } from '../../core/services/offer.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { CommentService } from '../../core/services/comment.service';
-import { MapComponent } from '../../shared/components/map/map.component';
-import { OfferCardComponent } from '../../shared/components/offer-card/offer-card.component';
-import { ScrollUpDirective } from '../../shared/directives/scroll-up.directive';
-import { CommentFormComponent } from '../../components/comment-form/comment-form.component';
-import { SortByDatePipe } from '../../shared/pipes/sort-by-date.pipe';
-import { LoaderComponent } from '../../shared/components/loader/loader.component';
+import {ChangeDetectionStrategy, Component, computed, DestroyRef, inject, OnInit, signal,} from '@angular/core';
+import {HeaderComponent} from '../../shared/components/header/header.component';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../core/models/app.state';
+import {Offer, OfferPreview} from '../../core/models/offers';
+import {Comment} from '../../core/models/comments';
+import {catchError, combineLatest, EMPTY, filter, finalize, map, merge, of, pipe, Subject, switchMap, tap,} from 'rxjs';
+import {ActivatedRoute, Router} from '@angular/router';
+import {OfferDataService} from '../../core/services/offer-data.service';
+import {AppRoute, AuthorizationStatus, QUANTITY_FIRST_OFFERS,} from '../../core/constants/const';
+import {selectAuthStatus} from '../../store/user/selectors/user.selectors';
+import {DatePipe, NgClass, SlicePipe, TitleCasePipe} from '@angular/common';
+import {OfferService} from '../../core/services/offer.service';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {CommentService} from '../../core/services/comment.service';
+import {MapComponent} from '../../shared/components/map/map.component';
+import {OfferCardComponent} from '../../shared/components/offer-card/offer-card.component';
+import {ScrollUpDirective} from '../../shared/directives/scroll-up.directive';
+import {CommentFormComponent} from '../../components/comment-form/comment-form.component';
+import {SortByDatePipe} from '../../shared/pipes/sort-by-date.pipe';
+import {LoaderComponent} from '../../shared/components/loader/loader.component';
 
 @Component({
   selector: 'app-offer',

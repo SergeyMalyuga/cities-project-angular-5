@@ -1,5 +1,5 @@
-import { Directive, HostListener, inject, Input } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import {Directive, HostListener, inject, Input} from '@angular/core';
+import {DOCUMENT} from '@angular/common';
 
 @Directive({
   selector: '[appScrollUp]',

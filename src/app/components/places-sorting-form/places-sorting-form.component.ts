@@ -1,16 +1,9 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  signal,
-} from '@angular/core';
-import { ToggleDirective } from '../../shared/directives/toggle.directive';
-import { NgClass } from '@angular/common';
-import { HoverTrackerDirective } from '../../shared/directives/hover-tracker.directive';
-import { SortType } from '../../core/constants/const';
-import { AccessibilityClickDirective } from '../../shared/directives/accessibility-click.directive';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output, signal,} from '@angular/core';
+import {ToggleDirective} from '../../shared/directives/toggle.directive';
+import {NgClass} from '@angular/common';
+import {HoverTrackerDirective} from '../../shared/directives/hover-tracker.directive';
+import {SortType} from '../../core/constants/const';
+import {AccessibilityClickDirective} from '../../shared/directives/accessibility-click.directive';
 
 @Component({
   selector: 'app-places-sorting-form',

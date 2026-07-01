@@ -1,12 +1,12 @@
-import { inject, Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { AppState } from '../models/app.state';
-import { selectAuthStatus } from '../../store/user/selectors/user.selectors';
-import { Router } from '@angular/router';
-import { AppRoute, AuthorizationStatus } from '../constants/const';
-import { toggleFavorite } from '../../store/favorite-offer/actions/favorite-offer.actions';
-import { selectToggleStatus } from '../../store/favorite-offer/selectors/favorite-offer.selectors';
-import { EMPTY, Observable } from 'rxjs';
+import {inject, Injectable} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {AppState} from '../models/app.state';
+import {selectAuthStatus} from '../../store/user/selectors/user.selectors';
+import {Router} from '@angular/router';
+import {AppRoute, AuthorizationStatus} from '../constants/const';
+import {toggleFavorite} from '../../store/favorite-offer/actions/favorite-offer.actions';
+import {selectToggleStatus} from '../../store/favorite-offer/selectors/favorite-offer.selectors';
+import {EMPTY, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

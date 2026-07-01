@@ -1,11 +1,11 @@
-import { inject, Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { UserService } from '../../../core/services/user.service';
+import {inject, Injectable} from '@angular/core';
+import {Actions, createEffect, ofType} from '@ngrx/effects';
+import {UserService} from '../../../core/services/user.service';
 import * as UserActions from '../actions/user.actions';
-import { catchError, map, of, switchMap, tap } from 'rxjs';
-import { AuthService } from '../../../core/services/auth.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { loadFavoriteOffers } from '../../favorite-offer/actions/favorite-offer.actions';
+import {catchError, map, of, switchMap, tap} from 'rxjs';
+import {AuthService} from '../../../core/services/auth.service';
+import {HttpErrorResponse} from '@angular/common/http';
+import {loadFavoriteOffers} from '../../favorite-offer/actions/favorite-offer.actions';
 
 @Injectable({
   providedIn: 'root',

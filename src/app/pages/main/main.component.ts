@@ -1,27 +1,18 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  signal,
-} from '@angular/core';
-import { HeaderComponent } from '../../shared/components/header/header.component';
-import { Store } from '@ngrx/store';
-import { AppState } from '../../core/models/app.state';
-import {
-  selectCity,
-  selectIsOffersLoading,
-  selectOffersByCity,
-} from '../../store/app/selectors/app.selectors';
-import { OfferCardComponent } from '../../shared/components/offer-card/offer-card.component';
-import { NgClass } from '@angular/common';
-import { CITY_LOCATIONS, SortType } from '../../core/constants/const';
-import { City } from '../../core/models/city';
-import { changeCity } from '../../store/city/actions/city.actions';
-import { PlacesSortingFormComponent } from '../../components/places-sorting-form/places-sorting-form.component';
-import { SortByPipe } from './pipes/sort-by.pipe';
-import { OfferPreview } from '../../core/models/offers';
-import { MapComponent } from '../../shared/components/map/map.component';
-import { LoaderComponent } from '../../shared/components/loader/loader.component';
+import {ChangeDetectionStrategy, Component, inject, signal,} from '@angular/core';
+import {HeaderComponent} from '../../shared/components/header/header.component';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../core/models/app.state';
+import {selectCity, selectIsOffersLoading, selectOffersByCity,} from '../../store/app/selectors/app.selectors';
+import {OfferCardComponent} from '../../shared/components/offer-card/offer-card.component';
+import {NgClass} from '@angular/common';
+import {CITY_LOCATIONS, SortType} from '../../core/constants/const';
+import {City} from '../../core/models/city';
+import {changeCity} from '../../store/city/actions/city.actions';
+import {PlacesSortingFormComponent} from '../../components/places-sorting-form/places-sorting-form.component';
+import {SortByPipe} from './pipes/sort-by.pipe';
+import {OfferPreview} from '../../core/models/offers';
+import {MapComponent} from '../../shared/components/map/map.component';
+import {LoaderComponent} from '../../shared/components/loader/loader.component';
 
 @Component({
   selector: 'app-main',

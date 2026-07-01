@@ -1,31 +1,17 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnInit,
-} from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import {
-  AppRoute,
-  AuthorizationStatus,
-  CITY_LOCATIONS,
-} from '../../core/constants/const';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { AppState } from '../../core/models/app.state';
-import { Credentials } from '../../core/models/credentials';
-import { login } from '../../store/user/actions/user.actions';
-import { selectAuthStatus } from '../../store/user/selectors/user.selectors';
-import { first } from 'rxjs';
-import { loadOffers } from '../../store/offer/actions/offer.actions';
-import { loadFavoriteOffers } from '../../store/favorite-offer/actions/favorite-offer.actions';
-import { changeCity } from '../../store/city/actions/city.actions';
+import {ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit,} from '@angular/core';
+import {Router, RouterLink} from '@angular/router';
+import {AppRoute, AuthorizationStatus, CITY_LOCATIONS,} from '../../core/constants/const';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators,} from '@angular/forms';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../core/models/app.state';
+import {Credentials} from '../../core/models/credentials';
+import {login} from '../../store/user/actions/user.actions';
+import {selectAuthStatus} from '../../store/user/selectors/user.selectors';
+import {first} from 'rxjs';
+import {loadOffers} from '../../store/offer/actions/offer.actions';
+import {loadFavoriteOffers} from '../../store/favorite-offer/actions/favorite-offer.actions';
+import {changeCity} from '../../store/city/actions/city.actions';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-login',
@@ -37,6 +23,7 @@ export class LoginComponent implements OnInit {
   private store = inject(Store<AppState>);
   private router = inject(Router);
   private fb = inject(FormBuilder);
+  private destroyRef = inject(DestroyRef);
 
   protected readonly AppRoute = AppRoute;
 
@@ -56,7 +43,10 @@ export class LoginComponent implements OnInit {
   public ngOnInit(): void {
     this.store
       .select(selectAuthStatus)
-      .pipe(first((authStatus) => authStatus === AuthorizationStatus.AUTH))
+      .pipe(
+        first((authStatus) => authStatus === AuthorizationStatus.AUTH),
+        takeUntilDestroyed(this.destroyRef),
+      )
       .subscribe(() => {
         this.loginForm.reset();
         this.store.dispatch(loadOffers());

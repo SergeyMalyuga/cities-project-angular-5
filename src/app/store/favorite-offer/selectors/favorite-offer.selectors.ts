@@ -1,6 +1,6 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { AppState } from '../../../core/models/app.state';
-import { favoriteOfferAdapter } from '../favorite-offer.reducer';
+import {createFeatureSelector, createSelector} from '@ngrx/store';
+import {AppState} from '../../../core/models/app.state';
+import {favoriteOfferAdapter} from '../favorite-offer.reducer';
 
 const selectFavoriteOfferState =
   createFeatureSelector<AppState['favoriteOffer']>('favoriteOffer');

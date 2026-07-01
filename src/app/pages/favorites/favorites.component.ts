@@ -1,19 +1,13 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnInit,
-  signal,
-} from '@angular/core';
-import { HeaderComponent } from '../../shared/components/header/header.component';
-import { Store } from '@ngrx/store';
-import { AppState } from '../../core/models/app.state';
+import {ChangeDetectionStrategy, Component, inject, OnInit, signal,} from '@angular/core';
+import {HeaderComponent} from '../../shared/components/header/header.component';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../core/models/app.state';
 import {
   selectFavoriteOffers,
   selectFavoriteOffersTotal,
 } from '../../store/favorite-offer/selectors/favorite-offer.selectors';
-import { SortedFavoriteOffers } from '../../core/models/sorted-favorite-offers';
-import { OfferCardComponent } from '../../shared/components/offer-card/offer-card.component';
+import {SortedFavoriteOffers} from '../../core/models/sorted-favorite-offers';
+import {OfferCardComponent} from '../../shared/components/offer-card/offer-card.component';
 import {RouterLink} from '@angular/router';
 import {AppRoute} from '../../core/constants/const';
 
