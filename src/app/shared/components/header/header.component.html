@@ -20,7 +20,7 @@
           }
           <li class="header__nav-item">
             <a class="header__nav-link"
-               [routerLink]="isAuthorized() ? null : [AppRoute.LOGIN]"
+               [routerLink]="isAuthorized() ? null : ['/', AppRoute.LOGIN]"
             (click)="logout()"
             >
               <span class="header__signout">{{isAuthorized() ? 'Sign out' : 'Login'}}</span>
