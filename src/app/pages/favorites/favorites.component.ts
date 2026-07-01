@@ -14,10 +14,12 @@ import {
 } from '../../store/favorite-offer/selectors/favorite-offer.selectors';
 import { SortedFavoriteOffers } from '../../core/models/sorted-favorite-offers';
 import { OfferCardComponent } from '../../shared/components/offer-card/offer-card.component';
+import {RouterLink} from '@angular/router';
+import {AppRoute} from '../../core/constants/const';
 
 @Component({
   selector: 'app-favorites',
-  imports: [HeaderComponent, OfferCardComponent],
+  imports: [HeaderComponent, OfferCardComponent, RouterLink],
   templateUrl: './favorites.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -56,4 +58,6 @@ export class FavoritesComponent implements OnInit {
   public isKetOfSortedOffers(key: string): key is keyof SortedFavoriteOffers {
     return key in this.offers();
   }
+
+  protected readonly AppRoute = AppRoute;
 }
